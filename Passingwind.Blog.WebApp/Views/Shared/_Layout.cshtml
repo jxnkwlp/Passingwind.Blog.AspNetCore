@@ -1,0 +1,143 @@
+﻿@inject BasicSettings basicSettings
+@inject AdvancedSettings advancedSettings
+@inject UserManager userManager
+@inject SignInManager signInManager
+@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    <title>@ViewData["Title"]</title>
+    <meta name="keywords" content="@ViewData["KeyWorlds"]" />
+    <meta name="description" content="@ViewData["Description"]" />
+
+    <!-- archive  -->
+    <link rel="contents" title="Archive" href="archive" />
+    <!-- rsd  -->
+    <link type="application/rsd+xml" rel="edituri" title="RSD" href="~/rsd.xml" />
+    <!-- opensearch  -->
+    <link rel="search" type="application/opensearchdescription+xml" href="~/opensearch.xml" title="@basicSettings.Title" />
+    <!-- syndication  -->
+    <link rel="alternate" type="application/atom+xml" title="@(basicSettings.Title) (ATOM)" href="~/syndication.xml?format=atom" />
+    <link rel="alternate" type="application/rss+xml" title="@(basicSettings.Title) (RSS)" href="~/syndication.xml" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Kreon:400,700" rel="stylesheet" />
+    <environment include="Development"> 
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development"> 
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    <!--  customer head -->
+    @Html.Raw(advancedSettings.HeaderHtml)
+    @RenderSection("head", false)
+</head>
+<body>
+
+    <div class="site-header-wrap">
+        <div class="container">
+            <header class="site-header">
+                <div class="site-title">
+                    <h1 class="blog-title"><a asp-route="home">@basicSettings.Title </a></h1>
+                    <p class="blog-description">@basicSettings.Description </p>
+                </div>
+
+                <a id="togglemenu" href="#togglemenu" class="header-navigation-toggle">Menu</a>
+                <nav id="main-navigation" class="main-navigation">
+                    <ul>
+                        <li><a asp-route="home">@Localizer["Home"]</a></li>
+                        <li><a asp-route="archive">@Localizer["Archive"]</a></li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a href="~/admin/">Admin</a></li>
+                            <li><a asp-route="@(RouteNames.LogOff)">Log Off</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-route="login">@Localizer["Login"]</a></li>
+                        }
+                    </ul>
+
+                </nav>
+
+            </header>
+        </div>
+    </div>
+
+
+    <div class="site-content clearfix">
+        <div class="container clearfix">
+            <div class="content-area">
+
+                <div class="site-main">
+
+                    @RenderBody()
+
+                </div>
+
+            </div>
+            <div class="widget-area">
+
+                <!--  page widget -->
+                @(await Component.InvokeAsync("PageListWidget"))
+
+                <!--  category widget -->
+                @(await Component.InvokeAsync("CategoryListWidget"))
+
+                <!--  tags widget -->
+                @(await Component.InvokeAsync("TagsWidget"))
+
+                <!--  search widget
+                @(await Component.InvokeAsync("SearchWidget"))-->
+                <!--  MonthList widget -->
+                @(await Component.InvokeAsync("MonthListWidget"))
+
+            </div>
+
+        </div>
+
+        <div class="container">
+
+            @Html.Partial("_Pager")
+
+        </div>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="container">
+            <div class="site-info">
+
+                <div class="footer-copyright">
+                    <p>
+                        Copyright © @DateTime.Now.Year. Power by <a href="#">Passingwind</a>. <a href="#">@basicSettings.IcpNumber </a> <a asp-route="sitemap">sitemap</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/js/site.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+    <!--  customer footer -->
+    @Html.Raw(advancedSettings.FooterHtml) 
+</body>
+</html>

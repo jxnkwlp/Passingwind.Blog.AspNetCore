@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passingwind.Blog.WebApp", "Passingwind.Blog.WebApp\Passingwind.Blog.WebApp.csproj", "{07465C6F-3869-4360-80AF-304ED8EE0FF9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passingwind.Blog.Core", "Passingwind.Blog.Core\Passingwind.Blog.Core.csproj", "{AE4A941A-5CE1-4B06-AC33-14474C51DE8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB6C5EA0-255A-4C9E-AA6B-33FC2C710614}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07465C6F-3869-4360-80AF-304ED8EE0FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07465C6F-3869-4360-80AF-304ED8EE0FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07465C6F-3869-4360-80AF-304ED8EE0FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07465C6F-3869-4360-80AF-304ED8EE0FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE4A941A-5CE1-4B06-AC33-14474C51DE8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE4A941A-5CE1-4B06-AC33-14474C51DE8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE4A941A-5CE1-4B06-AC33-14474C51DE8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE4A941A-5CE1-4B06-AC33-14474C51DE8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB30B782-8444-4858-AFD6-D2F2FBE6EFC2}
+	EndGlobalSection
+EndGlobal
